@@ -313,24 +313,51 @@ def brasil_total_vs_mundo(brasil_total_pc: float) -> go.Figure:
     return _dark(fig, h=380)
 
 
-def brasil_vs_mundo(df_int, ano: int = 2021) -> go.Figure:
-    paises = ["Catar","Austrália","Estados Unidos","Canadá","Rússia","Japão",
-              "Alemanha","China","Brasil","Índia"]
-    d = df_int[(df_int.Ano == ano) & (df_int["País"].isin(paises))].copy()
-    d = d.sort_values("t_per_capita", ascending=True)
-    cores = ["#2dc653" if p == "Brasil" else "#457b9d" for p in d["País"]]
+def brasil_vs_mundo() -> go.Figure:
+    """CO₂ fóssil per capita — dados hardcoded do Global Carbon Project 2022.
+    Independente de arquivo externo para garantir disponibilidade."""
+    import pandas as pd
+
+    dados_fossil = {
+        "Catar":          35.6,
+        "Austrália":      15.1,
+        "EUA":            14.9,
+        "Canadá":         14.3,
+        "Rússia":         12.1,
+        "Japão":           8.6,
+        "Alemanha":        8.1,
+        "China":           8.0,
+        "Brasil":          2.3,
+        "Índia":           1.9,
+    }
+
+    df = pd.DataFrame(list(dados_fossil.items()), columns=["pais", "valor"])
+    df = df.sort_values("valor")  # menor → maior
+
+    cores = []
+    for p in df["pais"]:
+        if p == "Brasil":
+            cores.append("#E07C20")   # âmbar destaque
+        else:
+            cores.append("#5C3818")   # marrom escuro
+
     fig = go.Figure(go.Bar(
-        x=d["t_per_capita"], y=d["País"], orientation="h",
+        x=df["valor"],
+        y=df["pais"],
+        orientation="h",
         marker_color=cores,
-        text=[f"{v:.1f}" for v in d["t_per_capita"]], textposition="outside",
-        hovertemplate="<b>%{y}</b><br>%{x:.1f} t CO₂ fóssil/hab<extra></extra>",
+        marker_line_width=0,
+        text=[f"{v:.1f} t" for v in df["valor"]],
+        textposition="outside",
+        textfont=dict(size=10, color=TXT),
+        hovertemplate="<b>%{y}</b><br>%{x:.1f} t CO₂ fóssil/pessoa<extra></extra>",
     ))
     fig.update_layout(
-        xaxis=dict(title="t CO₂ fóssil per capita (" + str(ano) + ")"),
-        title=dict(text="Em CO₂ fóssil, o Brasil é um dos MENORES emissores per capita",
-                   font=dict(size=13)),
+        xaxis=dict(title="t CO₂ fóssil per capita (2021)", color=TXT, gridcolor=GRID),
+        yaxis=dict(title="", color=TXT),
+        font=dict(family="Inter, -apple-system, sans-serif"),
     )
-    return _dark(fig, h=400)
+    return _dark(fig, h=380)
 
 
 # ─────────────────────────────────────────────────────────────

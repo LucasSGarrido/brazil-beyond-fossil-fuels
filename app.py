@@ -578,8 +578,7 @@ with t5:
         "o Brasil é um dos menores emissores do mundo. Um brasileiro emite ~2,3 t de CO₂ fóssil "
         "por ano — a mesma quantidade que um norte-americano produz em <b>menos de 7 semanas</b>."
     )
-    if not df_int.empty:
-        st.plotly_chart(g.brasil_vs_mundo(df_int, 2021), use_container_width=True)
+    st.plotly_chart(g.brasil_vs_mundo(), use_container_width=True)
 
     # ── Tensão: a limitação da métrica ───────────────────────────
     st.divider()
