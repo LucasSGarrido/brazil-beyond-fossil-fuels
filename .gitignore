@@ -1,0 +1,26 @@
+# Dataset bruto do SEEG (80MB) — não versionar, baixar do site oficial
+dados/
+*.xlsx
+*.xls
+
+# O parquet processado (data/seeg_tidy.parquet, ~2MB) PODE ser commitado
+# Se preferir não commitar, descomente:
+# data/*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
