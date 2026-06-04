@@ -2,6 +2,8 @@
 
 > Análise interativa de **52 anos de emissões de gases de efeito estufa** do Brasil (1970–2021), com dados oficiais do **SEEG / Observatório do Clima**.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://brazil-beyond-fossil-fuelsgit-zmapnybwthcdk5qgxe6xmn.streamlit.app)
+
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-red)
 ![Plotly](https://img.shields.io/badge/Plotly-choropleth-orange)
@@ -55,7 +57,13 @@ Top 15 estados emissores, com slider de ano e alternância absoluto/per capita �
 
 ---
 
-## Como executar
+## Demo ao vivo
+
+**[Acessar o dashboard](https://brazil-beyond-fossil-fuelsgit-zmapnybwthcdk5qgxe6xmn.streamlit.app)** — hospedado no Streamlit Community Cloud.
+
+---
+
+## Como executar localmente
 
 ```bash
 # 1. Clonar e entrar na pasta
